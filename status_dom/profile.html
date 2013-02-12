@@ -18,9 +18,10 @@ function formInput(){
 	var line = document.createElement('p');
 	var text = today + input;
 	var newNode = document.createTextNode(text);
+	var status = document.getElementById('status');
 	
 	line.appendChild(newNode);
-	document.getElementById('status').insertBefore(line);
+	status.insertBefore(line, status.firstChild);
 }
 </script>
 </head>
