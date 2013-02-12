@@ -1,0 +1,1 @@
+I modified profile.html [provided by M. Chow for COMP 20, Lab 5] so that it would run non-persistent status updates. I collaborated with Jessie Serrino on the script for running the status updates; we consulted several online sources in order to better understand DOM nodes and HTML elements.
