@@ -1,0 +1,11 @@
+body {
+margin-top: 35px;
+margin-bottom: 50px;
+margin-left: 35px;
+background: #708090;
+background-attachment: scroll;
+}
+
+canvas {
+background: #2F4F4F;
+}
