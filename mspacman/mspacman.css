@@ -9,3 +9,18 @@ background-attachment: scroll;
 canvas {
 background: #2F4F4F;
 }
+
+a:link, a:visited {
+font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+font-size: 10px;
+color: purple;
+text-decoration: none;
+}
+
+a:hover {
+font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+font-size: 10px;
+color: yellow;
+text-decoration: none;
+font-style: italic;
+}

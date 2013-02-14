@@ -9,6 +9,11 @@ function draw(){
 			ctx.drawImage(img, 82, 22, 15, 16, 280, 51, 15, 16);
 		};
 		img.src='pacman10-hp-sprite.png';
+		img2 = new Image();
+		img2.onload = function(){
+			ctx.drawImage(img2, 0, 0, 276, 110, 161, 425, 138, 55);
+		};
+		img2.src="googlelogo.jpg";
 	}
 	else {
 		alert('Sorry, canvas is not supported on your current browser.');
