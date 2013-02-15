@@ -1,3 +1,4 @@
+// draw basic board for frogger game [most fundamental unchanging elements]
 function draw_board(){
 	canvas = document.getElementById('game');
 	if (canvas.getContext){
@@ -21,6 +22,7 @@ function draw_board(){
 	set_up();
 }
 
+// initialize parameters for game [e.g.: location of frog, cars, log]
 function set_up(){
 	score = 0;
 	highScore = 0;
@@ -40,6 +42,7 @@ function set_up(){
 	start_game(score, highScore, level, frogXPos, frogYPos, logXPos, logYPos, numLives, car1XPos, car1YPos, car2XPos, car2YPos, car3XPos, car3YPos);
 }
 
+// set up board [frog, cars, log, etc.] for particular game using initialized parameters
 function start_game(score, highScore, level, frogXPos, frogYPos, logXPos, logYPos, numLives, car1XPos, car1YPos, car2XPos, car2YPos, car3XPos, car3YPos){
 	canvas = document.getElementById('game');
 	if (canvas.getContext){
