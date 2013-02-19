@@ -1,16 +1,11 @@
-p {
-margin-top: 10px;
-margin-left: 50px;
-}
-
 h1, h2, h3 {
 font-family: 'Ubuntu', sans-serif;
 }
 
 h1 {
 font-size: 30px;
-font-style: bold;
-color: #400000;
+font-style: oblique;
+color: black;
 }
 
 h2 {
@@ -23,9 +18,11 @@ font-size: 20px;
 color: #680000;
 }
 
-#list {
-margin-left: 15px;
-border-color: #CCCCCC;
+table {
+border-color: #330033;
 border-style: groove;
 border-width: 8px;
+border-spacing: 10px;
+table-layout: fixed;
+width: 200px;
 }

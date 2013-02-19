@@ -11,15 +11,15 @@
 				var currentJob;
 				for (var i = 0; i < jobSet.length; i++){
 					currentJob = jobSet[i];
-					document.write("<div id='list'><p><h1>" + currentJob['company'] + "</h1>");
+					document.write("<p><table><tr><td><h1>" + currentJob['company'] + "</h1>");
 					document.write("<h2>" + currentJob['location'] + "</h2>");
-					document.write("<h3>" + currentJob['position'] + "</p></h3></div>");
+					document.write("<h3>" + currentJob['position'] + "</td></tr></table></p>");
 				}
 			}
 			parse();
 		</script>
 	</head>
 	<body>
-		<div id="list""></div>
+		<div id="list"></div>
 	</body>
 </html>
