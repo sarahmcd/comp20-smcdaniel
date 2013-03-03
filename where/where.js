@@ -116,8 +116,34 @@ function createMap()
 	stop = new google.maps.LatLng(42.284652, -71.0645);
 	markers.push(new google.maps.Marker({position: stop, title: "Ashmont Station", icon: tlogo}));
 		ashmontBranch.push(stop);
-		
-	for (i = 0; i < markers.length; i++){
+	
+	// display markers
+	for (var i in markers){
 		markers[i].setMap(map);
 	}
+	
+	// create polyline
+	redLine = new google.maps.Polyline({
+		path: stations,
+		strokeColor: "#CC0000",
+		strokeOpacity: 1.0,
+		strokeWeight: 8
+	});
+	redLine.setMap(map);
+	
+	braintreeLine = new google.maps.Polyline({
+		path: braintreeBranch,
+		strokeColor: "#CC0000",
+		strokeOpacity: 1.0,
+		strokeWeight: 8
+	});
+	braintreeLine.setMap(map);
+	
+	ashmontLine = new google.maps.Polyline({
+		path: ashmontBranch,
+		strokeColor: "#CC0000",
+		strokeOpacity: 1.0,
+		strokeWeight: 8
+	});
+	ashmontLine.setMap(map);
 }
