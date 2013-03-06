@@ -147,9 +147,10 @@ function createMap()
 		strokeWeight: 8
 	});
 	ashmontLine.setMap(map);
+	getUserLocation();
 }
 
-function getCharacterLocations()
+/*function getCharacterLocations()
 {
 	// set marker images
 	carmenIcon = "carmen.png";
@@ -169,31 +170,23 @@ function getCharacterLocations()
 			}
 		}
 	}
-}
+}*/
 
 function getUserLocation()
 {
 	var browserSupportFlag = new Boolean();
 	
 	if (navigator.geolocation){
-	browserSupportFlag = true;
-	navigator.geolocation.getCurrentPosition(function(position){
-			userLat = new google.maps.LatLng(position.coords.latitude);
-			userLong = new google.maps.LatLng(position.coords.longitude);
-/*			var request = new XMLHttpRequest();
-			function locate(){
-				request.open("GET", "http://mbtamap-cedar.herokuapp.com/mapper/redline.json", true);
-				request.send(null);
-				request.onreadystatechange = callback;
-			}
-			function callback(){
-				if (request.readyState == 4 && request.status == 200){
-					closest = JSON.parse(request.responseText);
-				}
-			}
-			for (int i = 0; i < closest.length; i++){
-				
-			}*/
+		browserSupportFlag = true;
+		navigator.geolocation.getCurrentPosition(function(position){
+			userLat = position.coords.latitude;
+			userLong = position.coords.longitude;
+			userMarker = new google.maps.LatLng(userLat, userLong);
+			var marker = new google.maps.Marker({
+				position: userMarker,
+				map: map,
+				title: "You!"
+			});
 		}, function() {
 			handleNoGeolocation(browserSupportFlag);
 		});
@@ -204,7 +197,7 @@ function getUserLocation()
 	}
 	function handleNoGeolocation(errorFlag) {
 		if (errorFlag == true){
-			alert("Geolocation failed.");
+			alert("Geolocation failed: Check your browser security settings to enable.");
 		}
 		else {
 			alert("So sorry! Geolocation is not supported in your browser.");
