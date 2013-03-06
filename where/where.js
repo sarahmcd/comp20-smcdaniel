@@ -182,10 +182,17 @@ function getUserLocation()
 			userLat = position.coords.latitude;
 			userLong = position.coords.longitude;
 			userMarker = new google.maps.LatLng(userLat, userLong);
+			var contentString = '<h1>' + "You are here..." + '\n' + '</h1>' + '<div id="window_content">' + "Your current location is (" + userLat + ", " + userLong + ")" + '</div>';
+			var infowindow = new google.maps.InfoWindow({
+				content: contentString
+			});
 			var marker = new google.maps.Marker({
 				position: userMarker,
 				map: map,
 				title: "You!"
+			});
+			google.maps.event.addListener(marker, 'click', function() {
+				infowindow.open(map, marker);
 			});
 		}, function() {
 			handleNoGeolocation(browserSupportFlag);
