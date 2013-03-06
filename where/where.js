@@ -7,6 +7,7 @@ var markers = [];
 var user;
 var userLat;
 var userLong;
+var closest = [];
 var userMarker;
 
 function createMap()
@@ -146,4 +147,67 @@ function createMap()
 		strokeWeight: 8
 	});
 	ashmontLine.setMap(map);
+}
+
+function getCharacterLocations()
+{
+	// set marker images
+	carmenIcon = "carmen.png";
+	waldoIcon = "waldo.png";
+
+	var request = new XMLHttpRequest();
+	function location(){
+		request.open("GET", "http://messagehub.herokuapp.com/a3.json", true);
+		request.send(null);
+		request.onreadystatechange = callback;
+	}
+	function callback(){
+		if (request.readyState == 4 && request.status == 200){
+			locations = JSON.parse(request.responseText);
+			for (var i = 0; i < locations.length; i++){
+				
+			}
+		}
+	}
+}
+
+function getUserLocation()
+{
+	var browserSupportFlag = new Boolean();
+	
+	if (navigator.geolocation){
+	browserSupportFlag = true;
+	navigator.geolocation.getCurrentPosition(function(position){
+			userLat = new google.maps.LatLng(position.coords.latitude);
+			userLong = new google.maps.LatLng(position.coords.longitude);
+/*			var request = new XMLHttpRequest();
+			function locate(){
+				request.open("GET", "http://mbtamap-cedar.herokuapp.com/mapper/redline.json", true);
+				request.send(null);
+				request.onreadystatechange = callback;
+			}
+			function callback(){
+				if (request.readyState == 4 && request.status == 200){
+					closest = JSON.parse(request.responseText);
+				}
+			}
+			for (int i = 0; i < closest.length; i++){
+				
+			}*/
+		}, function() {
+			handleNoGeolocation(browserSupportFlag);
+		});
+	}
+	else {
+		browserSupportFlag = false;
+		handleNoGeolocation(browserSupportFlag);
+	}
+	function handleNoGeolocation(errorFlag) {
+		if (errorFlag == true){
+			alert("Geolocation failed.");
+		}
+		else {
+			alert("So sorry! Geolocation is not supported in your browser.");
+		}
+	}
 }
