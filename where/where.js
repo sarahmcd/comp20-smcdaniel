@@ -119,16 +119,8 @@ function createMap()
 		ashmontBranch.push(stop);
 	
 	// display markers
-/*	window = new google.maps.InfoWindow({
-		content: "ok"
-	});*/
 	for (var i = 0; i < markers.length; i++){
 		markers[i].setMap(map);
-/*		newContent = "TEST";
-		google.maps.event.addListener(markers[i], 'click', function() {
-			window.open(map, markers[i]);
-			window.setContent(newContent);
-		});*/
 	}
 	
 	// create polyline
@@ -192,21 +184,20 @@ function getDistance(loc1, loc2)
 	var lat2 = loc2.lat();
 	var lon2 = loc2.lng();
 	var R = 3961;					// miles
-	var dLat = (lat2-lat1).toRad();
-	var dLon = (lon2-lon1).toRad();
-	var lat1 = lat1.toRad();
-	var lat2 = lat2.toRad();
+	var dLat = toRad(lat2-lat1);
+	var dLon = toRad(lon2-lon1);
+	var lat1 = toRad(lat1);
+	var lat2 = toRad(lat2);
 	
 	var a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2);
-	var c = 2 * Math.atan2(math.sqrt(a), Math.sqrt(1-a));
+	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 	var d = R * c;
-	console.log("This is my dist! " + d);
 	return d;
 }
 
 function getClosest(marker)
 {
-	var currClosest;
+	var currClosest = markers[0];
 	var shortestDist = getDistance(marker.getPosition(), markers[0].getPosition());
 	var tempDist;
 	for (int i = 0; i < markers.length; i++){
@@ -222,19 +213,16 @@ function getClosest(marker)
 function getUserLocation()
 {
 	var browserSupportFlag = new Boolean();
-	
 	if (navigator.geolocation){
 		browserSupportFlag = true;
 		navigator.geolocation.getCurrentPosition(function(position){
 			userLat = position.coords.latitude;
 			userLong = position.coords.longitude;
 			userMarker = new google.maps.LatLng(userLat, userLong);
-			var closestStation = getClosest(userMarker);
-			console.log(closestStation.title());
-/*			var closestDistance = getDistance(userMarker.getPosition(), closestStation.getPosition());
-			console.log("In getUserLocation");*/
-			var contentString = '<h1>' + "You are here..." + '\n' + '</h1>' + '<div id="window_content">' + "Your current location is (" + userLat + ", " + userLong + ")."
-//									   + '\n' + "The nearest station is " + closestStation.getTitle() + ", which is approximately " + closestDistance + " away from you." + '</div>';
+//			var closestStation = getClosest(userMarker);
+//			var closestDistance = getDistance(userMarker.getPosition(), closestStation.getPosition());
+			var contentString = '<h1>' + 'You are here...' + '</h1>' + '<div id="window_content">' + 'Your current location is (' + userLat + ', ' + userLong + ').';
+//									   + 'The nearest station is ' + closestStation.getTitle() + ', which is approximately ' + ' away from you.' + '</div>';
 			var infowindow = new google.maps.InfoWindow({
 				content: contentString
 			});
