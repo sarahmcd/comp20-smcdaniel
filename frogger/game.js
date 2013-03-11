@@ -17,20 +17,38 @@ var log4YPos;
 var log5XPos;
 var log5YPos;
 var numLives;
-var car1XPos;
-var car1YPos;
-var car2XPos;
-var car2YPos;
-var car3XPos;
-var car3YPos;
+var car1AXPos;
+var car1AYPos;
+var car1BXPos;
+var car1BYPos;
+var car2AXPos;
+var car2AYPos;
+var car2BXPos;
+var car2BYPos;
+var car2CXPos;
+var car2CYPos;
+var car3AXPos;
+var car3AYPos;
+var car3BXPos;
+var car3BYPos;
+var car3CXPos;
+var car3CYPos;
+var car4AXPos;
+var car4AYPos;
+var car4BXPos;
+var car4BYPos;
+var car4CXPos;
+var car4CYPos;
+var car5AXPos;
+var car5AYPos;
+var car5BXPos;
+var car5BYPos;
 
 // basic game loop for structuring frogger game
 function game_loop(){
 	// get, check, process input
-//	draw_board();
 	set_up();
 	anim_loop();
-//	start_game();
 }
 
 function anim_loop(){
@@ -51,12 +69,32 @@ function animate(){
 	draw_board();
 	
 	// move objects [logs, vehicles]
-	if (car1XPos >= 395) {car1XPos = 0;}
-	else {car1XPos += 10;}
-	if (car2XPos >= 395) {car2XPos = 0;}
-	else {car2XPos += 10;}
-	if (car3XPos >= 395) {car3XPos = 0;}
-	else {car3XPos += 10;}
+	if (car1AXPos >= 395) {car1AXPos = 0;}
+	else {car1AXPos += 10;}
+	if (car1BXPos >= 395) {car1BXPos = 0;}
+	else {car1BXPos += 10;}
+	if (car2AXPos >= 395) {car2AXPos = 0;}
+	else {car2AXPos += 10;}
+	if (car2BXPos >= 395) {car2BXPos = 0;}
+	else {car2BXPos += 10;}
+	if (car2CXPos >= 395) {car2CXPos = 0;}
+	else {car2CXPos += 10;}
+	if (car3AXPos >= 395) {car3AXPos = 0;}
+	else {car3AXPos += 10;}
+	if (car3BXPos >= 395) {car3BXPos = 0;}
+	else {car3BXPos += 10;}
+	if (car3CXPos >= 395) {car3CXPos = 0;}
+	else {car3CXPos += 10;}
+	if (car4AXPos >= 395) {car4AXPos = 0;}
+	else {car4AXPos += 10;}
+	if (car4BXPos >= 395) {car4BXPos = 0;}
+	else {car4BXPos += 10;}
+	if (car4CXPos >= 395) {car4CXPos = 0;}
+	else {car4CXPos += 10;}
+	if (car5AXPos >= 395) {car5AXPos = 0;}
+	else {car5AXPos += 10;}
+	if (car5BXPos >= 395) {car5BXPos = 0;}
+	else {car5BXPos += 10;}
 	
 	if (log1XPos >= 395) {log1XPos = 0;}
 	else {log1XPos += 10;}
@@ -88,10 +126,19 @@ function animate(){
 	if (numLives >= 3) {ctx.drawImage(img, 13, 334, 18, 24, 36, 524, 14, 18);}	// life3
 	if (numLives >= 2) {ctx.drawImage(img, 13, 334, 18, 24, 20, 524, 14, 18);}	// life2
 	if (numLives >= 1) {ctx.drawImage(img, 13, 334, 18, 24, 4, 524, 14, 18);}	// life1
-	ctx.drawImage(img, 82, 264, 24, 26, car1XPos, car1YPos, 24, 26);			// car1
-	ctx.drawImage(img, 46, 265, 24, 24, car2XPos, car2YPos, 24, 24);			// car2
-	ctx.drawImage(img, 106, 302, 48, 18, car3XPos, car3YPos, 48, 18);			// car3
-
+	ctx.drawImage(img, 82, 264, 24, 26, car1AXPos, car1AYPos, 24, 26);			// car1A
+	ctx.drawImage(img, 46, 265, 24, 24, car1BXPos, car1BYPos, 24, 24);			// car1B
+	ctx.drawImage(img, 106, 302, 48, 18, car2AXPos, car2AYPos, 48, 18);			// car2A
+	ctx.drawImage(img, 10, 267, 28, 20, car2BXPos, car2BYPos, 28, 20);			// car2B
+	ctx.drawImage(img, 106, 302, 48, 18, car2CXPos, car2CYPos, 48, 18);			// car2C
+	ctx.drawImage(img, 10, 267, 28, 20, car3AXPos, car3AYPos, 28, 20);			// car3A
+	ctx.drawImage(img, 73, 301, 23, 21, car3BXPos, car3BYPos, 23, 21);			// car3B
+	ctx.drawImage(img, 10, 267, 28, 20, car3CXPos, car3CYPos, 28, 20);			// car3C
+	ctx.drawImage(img, 106, 302, 48, 18, car4AXPos, car4AYPos, 48, 18);			// car4A
+	ctx.drawImage(img, 10, 267, 28, 20, car4BXPos, car4BYPos, 28, 20);			// car4B
+	ctx.drawImage(img, 106, 302, 48, 18, car4CXPos, car4CYPos, 48, 18);			// car4C
+	ctx.drawImage(img, 82, 264, 24, 26, car5AXPos, car5AYPos, 24, 26);			// car5A
+	ctx.drawImage(img, 46, 265, 24, 24, car5BXPos, car5BYPos, 24, 24);			// car5B
 }
 
 // draw basic board for frogger game [most fundamental unchanging elements]
@@ -108,6 +155,7 @@ function draw_board(){
 		ctx.drawImage(img, 0, 119, 395, 34, 2, 277, 395, 34);	// purple road
 		ctx.drawImage(img, 0, 119, 395, 34, 2, 487, 395, 34);	// purple road
 		// draw log boundary lines
+		ctx.strokeStyle="Lime";
 		ctx.moveTo(2, 108);
 		ctx.lineTo(397, 108);
 		ctx.stroke();
@@ -124,7 +172,21 @@ function draw_board(){
 		ctx.lineTo(397, 244);
 		ctx.stroke();
 		// draw car boundary lines
-		
+		ctx.moveTo(2, 312);
+		ctx.lineTo(397, 312);
+		ctx.stroke();
+		ctx.moveTo(2, 347);
+		ctx.lineTo(397, 347);
+		ctx.stroke();
+		ctx.moveTo(2, 382);
+		ctx.lineTo(397, 382);
+		ctx.stroke();
+		ctx.moveTo(2, 417);
+		ctx.lineTo(397, 417);
+		ctx.stroke();
+		ctx.moveTo(2, 452);
+		ctx.lineTo(397, 452);
+		ctx.stroke();
 	};
 	img.src='assets/frogger_sprites.png';
 }
@@ -147,10 +209,30 @@ function set_up(){
 	log5XPos = 112;
 	log5YPos = 251;
 	numLives = 3;
-	car1XPos = 120;
-	car1YPos = 316;
-	car2XPos = 312;
-	car2YPos = 458;
-	car3XPos = 96;
-	car3YPos = 424;
+	car1AXPos = 24;
+	car1AYPos = 316;
+	car1BXPos = 300;
+	car1BYPos = 316;
+	car2AXPos = 20;
+	car2AYPos = 355;
+	car2BXPos = 170;
+	car2BYPos = 355;
+	car2CXPos = 320;
+	car2CYPos = 355;
+	car3AXPos = 10;
+	car3AYPos = 386;
+	car3BXPos = 170;
+	car3BYPos = 386;
+	car3CXPos = 340;
+	car3CYPos = 386;
+	car4AXPos = 20;
+	car4AYPos = 424;
+	car4BXPos = 170;
+	car4BYPos = 424;
+	car4CXPos = 320;
+	car4CYPos = 424;
+	car5AXPos = 24;
+	car5AYPos = 458;
+	car5BXPos = 300;
+	car5BYPos = 458;
 }
