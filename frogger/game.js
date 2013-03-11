@@ -58,6 +58,7 @@ function anim_loop(){
 	img.src = 'assets/frogger_sprites.png';
 	img.onload = function(){
 		setInterval(animate, 100);
+		window.addEventListener('keydown', userKey, true);
 	}
 }
 
@@ -189,6 +190,31 @@ function draw_board(){
 		ctx.stroke();
 	};
 	img.src='assets/frogger_sprites.png';
+}
+
+// get user key input
+function userKey(event){
+	oldFrogX = frogXPos;
+	oldFrogY = frogYPos;
+	
+	switch(event.keyCode){
+	// left arrow
+	case 37:
+		frogXPos += -5;
+		break;
+	// right arrow
+	case 39:
+		frogXPos += 5;
+		break;
+	// down arrow
+	case 40:
+		frogYPos += 5;
+		break;
+	// up arrow
+	case 38:
+		frogYPos += -5;
+		break;
+	}
 }
 
 // initialize parameters for game [e.g.: location of frog, cars, log]
