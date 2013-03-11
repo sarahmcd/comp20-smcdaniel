@@ -156,7 +156,7 @@ function draw_board(){
 		ctx.drawImage(img, 0, 119, 395, 34, 2, 277, 395, 34);	// purple road
 		ctx.drawImage(img, 0, 119, 395, 34, 2, 487, 395, 34);	// purple road
 		// draw log boundary lines
-		ctx.strokeStyle="Lime";
+/*		ctx.strokeStyle="Lime";
 		ctx.moveTo(2, 108);
 		ctx.lineTo(397, 108);
 		ctx.stroke();
@@ -187,7 +187,7 @@ function draw_board(){
 		ctx.stroke();
 		ctx.moveTo(2, 452);
 		ctx.lineTo(397, 452);
-		ctx.stroke();
+		ctx.stroke();*/
 	};
 	img.src='assets/frogger_sprites.png';
 }
@@ -200,19 +200,20 @@ function userKey(event){
 	switch(event.keyCode){
 	// left arrow
 	case 37:
-		frogXPos += -5;
+		frogXPos += -35;
 		break;
 	// right arrow
 	case 39:
-		frogXPos += 5;
+		frogXPos += 35;
 		break;
 	// down arrow
 	case 40:
-		frogYPos += 5;
+		frogYPos += 35;
 		break;
 	// up arrow
 	case 38:
-		frogYPos += -5;
+		frogYPos += -35;
+		score += 10;
 		break;
 	}
 }
@@ -223,7 +224,7 @@ function set_up(){
 	highScore = 0;
 	level = 1;
 	frogXPos = 190;
-	frogYPos = 495;
+	frogYPos = 510;
 	log1XPos = 240;
 	log1YPos = 115;
 	log2XPos = 112;
