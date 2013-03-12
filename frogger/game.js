@@ -71,42 +71,84 @@ function animate(){
 	
 	// move objects [logs, vehicles]
 	if (car1AXPos >= 395) {car1AXPos = 0;}
-	else {car1AXPos += 10;}
+	else {car1AXPos += 7;}
 	if (car1BXPos >= 395) {car1BXPos = 0;}
-	else {car1BXPos += 10;}
+	else {car1BXPos += 7;}
 	if (car2AXPos >= 395) {car2AXPos = 0;}
-	else {car2AXPos += 10;}
+	else {car2AXPos += 7;}
 	if (car2BXPos >= 395) {car2BXPos = 0;}
-	else {car2BXPos += 10;}
+	else {car2BXPos += 7;}
 	if (car2CXPos >= 395) {car2CXPos = 0;}
-	else {car2CXPos += 10;}
+	else {car2CXPos += 7;}
 	if (car3AXPos >= 395) {car3AXPos = 0;}
-	else {car3AXPos += 10;}
+	else {car3AXPos += 7;}
 	if (car3BXPos >= 395) {car3BXPos = 0;}
-	else {car3BXPos += 10;}
+	else {car3BXPos += 7;}
 	if (car3CXPos >= 395) {car3CXPos = 0;}
-	else {car3CXPos += 10;}
+	else {car3CXPos += 7;}
 	if (car4AXPos >= 395) {car4AXPos = 0;}
-	else {car4AXPos += 10;}
+	else {car4AXPos += 7;}
 	if (car4BXPos >= 395) {car4BXPos = 0;}
-	else {car4BXPos += 10;}
+	else {car4BXPos += 7;}
 	if (car4CXPos >= 395) {car4CXPos = 0;}
-	else {car4CXPos += 10;}
+	else {car4CXPos += 7;}
 	if (car5AXPos >= 395) {car5AXPos = 0;}
-	else {car5AXPos += 10;}
+	else {car5AXPos += 7;}
 	if (car5BXPos >= 395) {car5BXPos = 0;}
-	else {car5BXPos += 10;}
+	else {car5BXPos += 7;}
 	
 	if (log1XPos >= 395) {log1XPos = 0;}
-	else {log1XPos += 10;}
+	else {log1XPos += 7;}
 	if (log2XPos >= 395) {log2XPos = 0;}
-	else {log2XPos += 10;}
+	else {log2XPos += 7;}
 	if (log3XPos >= 395) {log3XPos = 0;}
-	else {log3XPos += 10;}
+	else {log3XPos += 7;}
 	if (log4XPos >= 395) {log4XPos = 0;}
-	else {log4XPos += 10;}
+	else {log4XPos += 7;}
 	if (log5XPos >= 395) {log5XPos = 0;}
-	else {log5XPos += 10;}
+	else {log5XPos += 7;}
+	
+	// check if frogger has hit a vehicle	
+	if ((frogXPos < car1AXPos + 24) && (frogXPos + 23 > car1AXPos) && (frogYPos < car1AYPos + 26) && (frogYPos + 18 > car1AYPos)){
+		numLives += -1;
+	}
+	if ((frogXPos < car1BXPos + 24) && (frogXPos + 23 > car1BXPos) && (frogYPos < car1BYPos + 24) && (frogYPos + 18 > car1BYPos)){
+		numLives += -1;
+	}
+	if ((frogXPos < car2AXPos + 48) && (frogXPos + 23 > car2AXPos) && (frogYPos < car2AYPos + 18) && (frogYPos + 18 > car2AYPos)){
+		numLives += -1;
+	}
+	if ((frogXPos < car2BXPos + 28) && (frogXPos + 23 > car2BXPos) && (frogYPos < car2BYPos + 20) && (frogYPos + 18 > car2BYPos)){
+		numLives += -1;
+	}
+	if ((frogXPos < car2CXPos + 48) && (frogXPos + 23 > car2CXPos) && (frogYPos < car2CYPos + 18) && (frogYPos + 18 > car2CYPos)){
+		numLives += -1;
+	}
+	if ((frogXPos < car3AXPos + 28) && (frogXPos + 23 > car3AXPos) && (frogYPos < car3AYPos + 20) && (frogYPos + 18 > car3AYPos)){
+		numLives += -1;
+	}
+	if ((frogXPos < car3BXPos + 23) && (frogXPos + 23 > car3BXPos) && (frogYPos < car3BYPos + 21) && (frogYPos + 18 > car3BYPos)){
+		numLives += -1;
+	}
+	if ((frogXPos < car3CXPos + 28) && (frogXPos + 23 > car3CXPos) && (frogYPos < car3CYPos + 20) && (frogYPos + 18 > car3CYPos)){
+		numLives += -1;
+	}
+	if ((frogXPos < car4AXPos + 48) && (frogXPos + 23 > car4AXPos) && (frogYPos < car4AYPos + 18) && (frogYPos + 18 > car4AYPos)){
+		numLives += -1;
+	}
+	if ((frogXPos < car4BXPos + 28) && (frogXPos + 23 > car4BXPos) && (frogYPos < car4BYPos + 20) && (frogYPos + 18 > car4BYPos)){
+		numLives += -1;
+	}
+	if ((frogXPos < car4CXPos + 48) && (frogXPos + 23 > car4CXPos) && (frogYPos < car4CYPos + 18) && (frogYPos + 18 > car4CYPos)){
+		numLives += -1;
+	}
+	if ((frogXPos < car5AXPos + 24) && (frogXPos + 23 > car5AXPos) && (frogYPos < car5AYPos + 26) && (frogYPos + 18 > car5AYPos)){
+		numLives += -1;
+	}
+	if ((frogXPos < car5BXPos + 24) && (frogXPos + 23 > car5BXPos) && (frogYPos < car5BYPos + 24) && (frogYPos + 18 > car5BYPos)){
+		numLives += -1;
+	}
+
 	
 	// draw rest of board features
 	ctx.font="bold 14px sans-serif";
@@ -224,7 +266,7 @@ function set_up(){
 	highScore = 0;
 	level = 1;
 	frogXPos = 190;
-	frogYPos = 510;
+	frogYPos = 500;
 	log1XPos = 240;
 	log1YPos = 115;
 	log2XPos = 112;
