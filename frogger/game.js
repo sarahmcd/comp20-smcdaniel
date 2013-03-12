@@ -57,7 +57,7 @@ function anim_loop(){
 	img = new Image();
 	img.src = 'assets/frogger_sprites.png';
 	img.onload = function(){
-		setInterval(animate, 100);
+		setInterval(animate, 98);
 		window.addEventListener('keydown', userKey, true);
 	}
 }
@@ -160,7 +160,6 @@ function animate(){
 	ctx.font="bold 20px sans-serif";
 	ctx.fillText("Level ", 68, 540);
 	ctx.fillText(level, 130, 540);
-	ctx.drawImage(img, 12, 369, 23, 18, frogXPos, frogYPos, 23, 18);			// frog piece
 	ctx.drawImage(img, 7, 198, 116, 21, log1XPos, log1YPos, 116, 21);			// log1
 	ctx.drawImage(img, 7, 198, 116, 21, log2XPos, log2YPos, 116, 21);			// log2
 	ctx.drawImage(img, 7, 198, 116, 21, log3XPos, log3YPos, 116, 21);			// log3
@@ -197,6 +196,7 @@ function draw_board(){
 		ctx.drawImage(img, 0, 55, 395, 54, 2, 53, 395, 54);		// green shape
 		ctx.drawImage(img, 0, 119, 395, 34, 2, 277, 395, 34);	// purple road
 		ctx.drawImage(img, 0, 119, 395, 34, 2, 487, 395, 34);	// purple road
+		ctx.drawImage(img, 12, 369, 23, 18, frogXPos, frogYPos, 23, 18);			// frog piece
 		// draw log boundary lines
 /*		ctx.strokeStyle="Lime";
 		ctx.moveTo(2, 108);
