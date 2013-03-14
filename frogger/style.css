@@ -4,6 +4,7 @@
 
 canvas {
     background-color: #cb630a;
+	background-position: fixed;
     padding: 5px;
     margin: 10px;
     border-width: 60px;
