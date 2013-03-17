@@ -5,13 +5,19 @@ The files index.html, style.css, and game.js [along with corresponding asset .pn
 IMPLEMENTED IN THIS ASSIGNMENT:
 - Game loads on page load
 - Player can move frog piece using UP, DOWN, RIGHT, and LEFT arrow keys
-- Additional vehicles and logs rendered
 - All vehicles and logs animated
 - Collision detection implemented [such that Frogger loses one life one struck by a vehicle]
 - Basic game scoring [10 points for moving forward, 50 points for getting Frogger home, 1000 points for each fifth Frogger returned home] implemented
+
+ADDITIONAL IMPLEMENTATIONS:
+- Upon collision with car or submersion in water, Frogger animates to dead frog image
+- Basic levels implemented such that after successfully getting five frogs home, animation speed of logs and cars increases.
 
 COLLABORATION AND REFERENCE:
 I discussed methods for implementing animation and collision detection with Cameron Jackson and Jessie Serrino.
 My HTML5 version of Frogger is based on that playable at www.playfrogger.org.
 
 I spent approximately five hours completing the assignment for which I rendered the Frogger gameboard. I spent approximately ten hours completing the playable version of the game.
+
+NOTE OF THANKS:
+I would like to articulate my gratitude to Ming Chow for his understanding and flexibility regarding the submission date for this assignment. His patience enabled me to produce my best work.

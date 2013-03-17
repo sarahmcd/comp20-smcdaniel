@@ -46,6 +46,8 @@ var car5AXPos;
 var car5AYPos;
 var car5BXPos;
 var car5BYPos;
+var carSpeed;
+var logSpeed;
 
 // basic game loop for structuring frogger game
 function game_loop(){
@@ -98,6 +100,8 @@ function set_up(){
 	car5AYPos = 455;
 	car5BXPos = 300;
 	car5BYPos = 455;
+	logSpeed = 7;
+	carSpeed = 7;
 }
 
 function anim_loop(){
@@ -211,8 +215,8 @@ function draw_pieces(){
 	ctx.fillStyle="Lime";
 	ctx.fillText("Score: ", 4, 557);
 	ctx.fillText(score, 54, 557);
-	ctx.fillText("Highscore: ", 84, 557);
-	ctx.fillText(highScore, 166, 557);
+	ctx.fillText("Highscore: ", 120, 557);
+	ctx.fillText(highScore, 206, 557);
 	ctx.font="bold 20px sans-serif";
 	ctx.fillText("Level ", 68, 540);
 	ctx.fillText(level, 130, 540);
@@ -243,42 +247,42 @@ function draw_pieces(){
 function move(){
 	// animate vehicles
 	if (car1AXPos >= 395) {car1AXPos = -24;}
-	else {car1AXPos += 7;}
+	else {car1AXPos += carSpeed;}
 	if (car1BXPos >= 395) {car1BXPos = -24;}
-	else {car1BXPos += 7;}
+	else {car1BXPos += carSpeed;}
 	if (car2AXPos >= 395) {car2AXPos = -48;}
-	else {car2AXPos += 7;}
+	else {car2AXPos += carSpeed;}
 	if (car2BXPos >= 395) {car2BXPos = -28;}
-	else {car2BXPos += 7;}
+	else {car2BXPos += carSpeed;}
 	if (car2CXPos >= 395) {car2CXPos = -48;}
-	else {car2CXPos += 7;}
+	else {car2CXPos += carSpeed;}
 	if (car3AXPos >= 395) {car3AXPos = -28;}
-	else {car3AXPos += 7;}
+	else {car3AXPos += carSpeed;}
 	if (car3BXPos >= 395) {car3BXPos = -23;}
-	else {car3BXPos += 7;}
+	else {car3BXPos += carSpeed;}
 	if (car3CXPos >= 395) {car3CXPos = -28;}
-	else {car3CXPos += 7;}
+	else {car3CXPos += carSpeed;}
 	if (car4AXPos >= 395) {car4AXPos = -48;}
-	else {car4AXPos += 7;}
+	else {car4AXPos += carSpeed;}
 	if (car4BXPos >= 395) {car4BXPos = -28;}
-	else {car4BXPos += 7;}
+	else {car4BXPos += carSpeed;}
 	if (car4CXPos >= 395) {car4CXPos = -48;}
-	else {car4CXPos += 7;}
+	else {car4CXPos += carSpeed;}
 	if (car5AXPos >= 395) {car5AXPos = -24;}
-	else {car5AXPos += 7;}
+	else {car5AXPos += carSpeed;}
 	if (car5BXPos >= 395) {car5BXPos = -24;}
-	else {car5BXPos += 7;}
+	else {car5BXPos += carSpeed;}
 	// animate logs
 	if (log1XPos >= 395) {log1XPos = -116;}
-	else {log1XPos += 7;}
+	else {log1XPos += logSpeed;}
 	if (log2XPos >= 395) {log2XPos = -116;}
-	else {log2XPos += 7;}
+	else {log2XPos += logSpeed;}
 	if (log3XPos >= 395) {log3XPos = -116;}
-	else {log3XPos += 7;}
+	else {log3XPos += logSpeed;}
 	if (log4XPos >= 395) {log4XPos = -116;}
-	else {log4XPos += 7;}
+	else {log4XPos += logSpeed;}
 	if (log5XPos >= 395) {log5XPos = -116;}
-	else {log5XPos += 7;}
+	else {log5XPos += logSpeed;}
 }
 
 // check if frog piece has collided with vehicle or is in water
@@ -291,113 +295,74 @@ function check_collide(){
 	}
 }
 
-function draw_dead(){
+function frog_dead(){
 	ctx.drawImage(img3, 5, 3, 18, 24, frogXPos, frogYPos, 18, 24);
+	numLives += -1;
+	frogXPos = frogXStart;
+	frogYPos = frogYStart;
 }
 
 // check if frog piece has collided with vehicle
 function check_cars(){
 	if ((frogXPos < car1AXPos + 24) && (frogXPos + 23 > car1AXPos) && (frogYPos < car1AYPos + 26) && (frogYPos + 18 > car1AYPos)){
-		draw_dead();
-		numLives += -1;	
-		frogXPos = frogXStart;
-		frogYPos = frogYStart;
+		frog_dead();
 	}
 	if ((frogXPos < car1BXPos + 24) && (frogXPos + 23 > car1BXPos) && (frogYPos < car1BYPos + 24) && (frogYPos + 18 > car1BYPos)){
-		draw_dead();
-		numLives += -1;
-		frogXPos = frogXStart;
-		frogYPos = frogYStart;
+		frog_dead();
 	}
 	if ((frogXPos < car2AXPos + 48) && (frogXPos + 23 > car2AXPos) && (frogYPos < car2AYPos + 18) && (frogYPos + 18 > car2AYPos)){
-		draw_dead();
-		numLives += -1;
-		frogXPos = frogXStart;
-		frogYPos = frogYStart;
+		frog_dead();
 	}
 	if ((frogXPos < car2BXPos + 28) && (frogXPos + 23 > car2BXPos) && (frogYPos < car2BYPos + 20) && (frogYPos + 18 > car2BYPos)){
-		draw_dead();
-		numLives += -1;
-		frogXPos = frogXStart;
-		frogYPos = frogYStart;
+		frog_dead();
 	}
 	if ((frogXPos < car2CXPos + 48) && (frogXPos + 23 > car2CXPos) && (frogYPos < car2CYPos + 18) && (frogYPos + 18 > car2CYPos)){
-		draw_dead();
-		numLives += -1;
-		frogXPos = frogXStart;
-		frogYPos = frogYStart;
+		frog_dead();
 	}
 	if ((frogXPos < car3AXPos + 28) && (frogXPos + 23 > car3AXPos) && (frogYPos < car3AYPos + 20) && (frogYPos + 18 > car3AYPos)){
-		draw_dead();
-		numLives += -1;
-		frogXPos = frogXStart;
-		frogYPos = frogYStart;
+		frog_dead();
 	}
 	if ((frogXPos < car3BXPos + 23) && (frogXPos + 23 > car3BXPos) && (frogYPos < car3BYPos + 21) && (frogYPos + 18 > car3BYPos)){
-		draw_dead();
-		numLives += -1;
-		frogXPos = frogXStart;
-		frogYPos = frogYStart;
+		frog_dead();
 	}
 	if ((frogXPos < car3CXPos + 28) && (frogXPos + 23 > car3CXPos) && (frogYPos < car3CYPos + 20) && (frogYPos + 18 > car3CYPos)){
-		draw_dead();
-		numLives += -1;
-		frogXPos = frogXStart;
-		frogYPos = frogYStart;
+		frog_dead();
 	}
 	if ((frogXPos < car4AXPos + 48) && (frogXPos + 23 > car4AXPos) && (frogYPos < car4AYPos + 18) && (frogYPos + 18 > car4AYPos)){
-		draw_dead();
-		numLives += -1;
-		frogXPos = frogXStart;
-		frogYPos = frogYStart;
+		frog_dead();
 	}
 	if ((frogXPos < car4BXPos + 28) && (frogXPos + 23 > car4BXPos) && (frogYPos < car4BYPos + 20) && (frogYPos + 18 > car4BYPos)){
-		draw_dead();
-		numLives += -1;
-		frogXPos = frogXStart;
-		frogYPos = frogYStart;
+		frog_dead();
 	}
 	if ((frogXPos < car4CXPos + 48) && (frogXPos + 23 > car4CXPos) && (frogYPos < car4CYPos + 18) && (frogYPos + 18 > car4CYPos)){
-		draw_dead();
-		numLives += -1;
-		frogXPos = frogXStart;
-		frogYPos = frogYStart;
+		frog_dead();
 	}
 	if ((frogXPos < car5AXPos + 24) && (frogXPos + 23 > car5AXPos) && (frogYPos < car5AYPos + 26) && (frogYPos + 18 > car5AYPos)){
-		draw_dead();
-		numLives += -1;
-		frogXPos = frogXStart;
-		frogYPos = frogYStart;
+		frog_dead();
 	}
 	if ((frogXPos < car5BXPos + 24) && (frogXPos + 23 > car5BXPos) && (frogYPos < car5BYPos + 24) && (frogYPos + 18 > car5BYPos)){
-		draw_dead();
-		numLives += -1;
-		frogXPos = frogXStart;
-		frogYPos = frogYStart;
+		frog_dead();
 	}
 }
 
 function check_water(){
 	if ((frogXPos < log1XPos + 90) && (frogXPos + 23 > log1XPos) && (frogYPos < log1YPos + 21) && (frogYPos + 18 > log1YPos)){
-		frogXPos += 7;
+		frogXPos += logSpeed;
 	}
 	else if ((frogXPos < log2XPos + 90) && (frogXPos + 23 > log2XPos) && (frogYPos < log2YPos + 21) && (frogYPos + 18 > log2YPos)){
-		frogXPos += 7;
+		frogXPos += logSpeed;
 	}
 	else if ((frogXPos < log3XPos + 90) && (frogXPos + 23 > log3XPos) && (frogYPos < log3YPos + 21) && (frogYPos + 18 > log3YPos)){
-		frogXPos += 7;
+		frogXPos += logSpeed;
 	}
 	else if ((frogXPos < log4XPos + 90) && (frogXPos + 23 > log4XPos) && (frogYPos < log4YPos + 21) && (frogYPos + 18 > log4YPos)){
-		frogXPos += 7;
+		frogXPos += logSpeed;
 	}
 	else if ((frogXPos < log5XPos + 90) && (frogXPos + 23 > log5XPos) && (frogYPos < log5YPos + 21) && (frogYPos + 18 > log5YPos)){
-		frogXPos += 7;
+		frogXPos += logSpeed;
 	}
 	else {
-		draw_dead();
-		numLives += -1;
-		frogXPos = frogXStart;
-		frogYPos = frogYStart;
+		frog_dead();
 	}
 }
 
@@ -438,6 +403,9 @@ function check_win(){
 function score_win(){
 		if (numWon % 5 == 0){		// if fifth frog to make it, +1000
 			score += 1000;
+			level += 1;
+			carSpeed += 3;
+			logSpeed += 3;
 		}
 		else {						// otherwise, +50
 			score += 50;
