@@ -106,7 +106,7 @@ function anim_loop(){
 	img = new Image();
 	img.src = 'assets/frogger_sprites.png';
 	img.onload = function(){
-		setInterval(animate, 98);
+		setInterval(animate, 140);
 		window.addEventListener('keydown', userKey, true);
 	}
 }
@@ -187,6 +187,7 @@ function draw_board(){
 	ctx.fillRect(2, 311, 395, 252);
 	img = new Image();
 	img2 = new Image();
+	img3 = new Image();
 	img.onload = function(){
 		ctx.drawImage(img, 5, 6, 338, 43, 5, 5, 338, 43);					// header
 		ctx.drawImage(img, 0, 55, 395, 54, 2, 53, 395, 54);					// green shape
@@ -201,6 +202,7 @@ function draw_board(){
 	};
 	img.src='assets/frogger_sprites.png';
 	img2.src='assets/lilypad.png';
+	img3.src='assets/dead_frog.png';
 }
 
 // draw pieces on gameboard that are moving and/or changing during game play
@@ -289,69 +291,86 @@ function check_collide(){
 	}
 }
 
+function draw_dead(){
+	ctx.drawImage(img3, 5, 3, 18, 24, frogXPos, frogYPos, 18, 24);
+}
+
 // check if frog piece has collided with vehicle
 function check_cars(){
 	if ((frogXPos < car1AXPos + 24) && (frogXPos + 23 > car1AXPos) && (frogYPos < car1AYPos + 26) && (frogYPos + 18 > car1AYPos)){
+		draw_dead();
 		numLives += -1;	
 		frogXPos = frogXStart;
 		frogYPos = frogYStart;
 	}
 	if ((frogXPos < car1BXPos + 24) && (frogXPos + 23 > car1BXPos) && (frogYPos < car1BYPos + 24) && (frogYPos + 18 > car1BYPos)){
+		draw_dead();
 		numLives += -1;
 		frogXPos = frogXStart;
 		frogYPos = frogYStart;
 	}
 	if ((frogXPos < car2AXPos + 48) && (frogXPos + 23 > car2AXPos) && (frogYPos < car2AYPos + 18) && (frogYPos + 18 > car2AYPos)){
+		draw_dead();
 		numLives += -1;
 		frogXPos = frogXStart;
 		frogYPos = frogYStart;
 	}
 	if ((frogXPos < car2BXPos + 28) && (frogXPos + 23 > car2BXPos) && (frogYPos < car2BYPos + 20) && (frogYPos + 18 > car2BYPos)){
+		draw_dead();
 		numLives += -1;
 		frogXPos = frogXStart;
 		frogYPos = frogYStart;
 	}
 	if ((frogXPos < car2CXPos + 48) && (frogXPos + 23 > car2CXPos) && (frogYPos < car2CYPos + 18) && (frogYPos + 18 > car2CYPos)){
+		draw_dead();
 		numLives += -1;
 		frogXPos = frogXStart;
 		frogYPos = frogYStart;
 	}
 	if ((frogXPos < car3AXPos + 28) && (frogXPos + 23 > car3AXPos) && (frogYPos < car3AYPos + 20) && (frogYPos + 18 > car3AYPos)){
+		draw_dead();
 		numLives += -1;
 		frogXPos = frogXStart;
 		frogYPos = frogYStart;
 	}
 	if ((frogXPos < car3BXPos + 23) && (frogXPos + 23 > car3BXPos) && (frogYPos < car3BYPos + 21) && (frogYPos + 18 > car3BYPos)){
+		draw_dead();
 		numLives += -1;
 		frogXPos = frogXStart;
 		frogYPos = frogYStart;
 	}
 	if ((frogXPos < car3CXPos + 28) && (frogXPos + 23 > car3CXPos) && (frogYPos < car3CYPos + 20) && (frogYPos + 18 > car3CYPos)){
+		draw_dead();
 		numLives += -1;
 		frogXPos = frogXStart;
 		frogYPos = frogYStart;
 	}
 	if ((frogXPos < car4AXPos + 48) && (frogXPos + 23 > car4AXPos) && (frogYPos < car4AYPos + 18) && (frogYPos + 18 > car4AYPos)){
+		draw_dead();
 		numLives += -1;
 		frogXPos = frogXStart;
 		frogYPos = frogYStart;
 	}
 	if ((frogXPos < car4BXPos + 28) && (frogXPos + 23 > car4BXPos) && (frogYPos < car4BYPos + 20) && (frogYPos + 18 > car4BYPos)){
+		draw_dead();
 		numLives += -1;
 		frogXPos = frogXStart;
 		frogYPos = frogYStart;
 	}
 	if ((frogXPos < car4CXPos + 48) && (frogXPos + 23 > car4CXPos) && (frogYPos < car4CYPos + 18) && (frogYPos + 18 > car4CYPos)){
+		draw_dead();
 		numLives += -1;
 		frogXPos = frogXStart;
 		frogYPos = frogYStart;
 	}
 	if ((frogXPos < car5AXPos + 24) && (frogXPos + 23 > car5AXPos) && (frogYPos < car5AYPos + 26) && (frogYPos + 18 > car5AYPos)){
+		draw_dead();
 		numLives += -1;
 		frogXPos = frogXStart;
 		frogYPos = frogYStart;
 	}
 	if ((frogXPos < car5BXPos + 24) && (frogXPos + 23 > car5BXPos) && (frogYPos < car5BYPos + 24) && (frogYPos + 18 > car5BYPos)){
+		draw_dead();
 		numLives += -1;
 		frogXPos = frogXStart;
 		frogYPos = frogYStart;
@@ -375,9 +394,10 @@ function check_water(){
 		frogXPos += 7;
 	}
 	else {
+		draw_dead();
 		numLives += -1;
-//		frogXPos = frogXStart;
-//		frogYPos = frogYStart;
+		frogXPos = frogXStart;
+		frogYPos = frogYStart;
 	}
 }
 
