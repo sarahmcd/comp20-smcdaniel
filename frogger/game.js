@@ -6,6 +6,9 @@ var highScore;
 var level;
 var numLives;
 var numWon;
+var moveSound;
+var winSound;
+var loseSound;
 var frogXStart = 190;
 var frogYStart = 500;
 var frogXPos;
@@ -60,7 +63,7 @@ function set_up(){
 	score = 0;
 	highScore = 0;
 	level = 1;
-	numLives = 3;
+	numLives = 5;
 	numWon = 0;
 	frogXPos = frogXStart;
 	frogYPos = frogYStart;
@@ -105,6 +108,9 @@ function set_up(){
 }
 
 function anim_loop(){
+	moveSound = document.getElementById('move');
+	winSound = document.getElementById('win');
+	loseSound = document.getElementById('lose');
 	canvas = document.getElementById('game');
 	ctx = canvas.getContext('2d');
 	img = new Image();
@@ -129,6 +135,7 @@ function userKey(event){
 		else {
 			frogXPos += -43;
 		}
+		moveSound.play();
 		break;
 	// right arrow
 	case 39:
@@ -138,6 +145,7 @@ function userKey(event){
 		else {
 			frogXPos += 43;
 		}
+		moveSound.play();
 		break;
 	// down arrow
 	case 40:
@@ -147,6 +155,7 @@ function userKey(event){
 		else {
 			frogYPos += 35;
 		}
+		moveSound.play();
 		break;
 	// up arrow
 	case 38:
@@ -157,6 +166,7 @@ function userKey(event){
 			frogYPos += -35;
 			score += 10;
 		}
+		moveSound.play();
 		break;
 	}
 }
@@ -171,10 +181,9 @@ function animate(){
 	// draw rest of board features
 	draw_pieces();
 
-	
 	// move objects [logs, vehicles]
 	move();
-	
+
 	// check if frogger has hit a vehicle
 	check_collide();
 	
@@ -218,16 +227,18 @@ function draw_pieces(){
 	ctx.fillText("Highscore: ", 120, 557);
 	ctx.fillText(highScore, 206, 557);
 	ctx.font="bold 20px sans-serif";
-	ctx.fillText("Level ", 68, 540);
-	ctx.fillText(level, 130, 540);
+	ctx.fillText("Level ", 120, 540);
+	ctx.fillText(level, 180, 540);
+	if (numLives >= 5) {ctx.drawImage(img, 13, 334, 18, 24, 68, 524, 14, 18);}	// life5
+	if (numLives >= 4) {ctx.drawImage(img, 13, 334, 18, 24, 52, 524, 14, 18);}	// life4
+	if (numLives >= 3) {ctx.drawImage(img, 13, 334, 18, 24, 36, 524, 14, 18);}	// life3
+	if (numLives >= 2) {ctx.drawImage(img, 13, 334, 18, 24, 20, 524, 14, 18);}	// life2
+	if (numLives >= 1) {ctx.drawImage(img, 13, 334, 18, 24, 4, 524, 14, 18);}	// life1
 	ctx.drawImage(img, 7, 198, 116, 21, log1XPos, log1YPos, 116, 21);			// log1
 	ctx.drawImage(img, 7, 198, 116, 21, log2XPos, log2YPos, 116, 21);			// log2
 	ctx.drawImage(img, 7, 198, 116, 21, log3XPos, log3YPos, 116, 21);			// log3
 	ctx.drawImage(img, 7, 198, 116, 21, log4XPos, log4YPos, 116, 21);			// log4
 	ctx.drawImage(img, 7, 198, 116, 21, log5XPos, log5YPos, 116, 21);			// log5
-	if (numLives >= 3) {ctx.drawImage(img, 13, 334, 18, 24, 36, 524, 14, 18);}	// life3
-	if (numLives >= 2) {ctx.drawImage(img, 13, 334, 18, 24, 20, 524, 14, 18);}	// life2
-	if (numLives >= 1) {ctx.drawImage(img, 13, 334, 18, 24, 4, 524, 14, 18);}	// life1
 	ctx.drawImage(img, 82, 264, 24, 26, car1AXPos, car1AYPos, 24, 26);			// car1A
 	ctx.drawImage(img, 46, 265, 24, 24, car1BXPos, car1BYPos, 24, 24);			// car1B
 	ctx.drawImage(img, 106, 302, 48, 18, car2AXPos, car2AYPos, 48, 18);			// car2A
@@ -305,42 +316,55 @@ function frog_dead(){
 // check if frog piece has collided with vehicle
 function check_cars(){
 	if ((frogXPos < car1AXPos + 24) && (frogXPos + 23 > car1AXPos) && (frogYPos < car1AYPos + 26) && (frogYPos + 18 > car1AYPos)){
+		loseSound.play();
 		frog_dead();
 	}
 	if ((frogXPos < car1BXPos + 24) && (frogXPos + 23 > car1BXPos) && (frogYPos < car1BYPos + 24) && (frogYPos + 18 > car1BYPos)){
+		loseSound.play();
 		frog_dead();
 	}
 	if ((frogXPos < car2AXPos + 48) && (frogXPos + 23 > car2AXPos) && (frogYPos < car2AYPos + 18) && (frogYPos + 18 > car2AYPos)){
+		loseSound.play();
 		frog_dead();
 	}
 	if ((frogXPos < car2BXPos + 28) && (frogXPos + 23 > car2BXPos) && (frogYPos < car2BYPos + 20) && (frogYPos + 18 > car2BYPos)){
+		loseSound.play();
 		frog_dead();
 	}
 	if ((frogXPos < car2CXPos + 48) && (frogXPos + 23 > car2CXPos) && (frogYPos < car2CYPos + 18) && (frogYPos + 18 > car2CYPos)){
+		loseSound.play();
 		frog_dead();
 	}
 	if ((frogXPos < car3AXPos + 28) && (frogXPos + 23 > car3AXPos) && (frogYPos < car3AYPos + 20) && (frogYPos + 18 > car3AYPos)){
+		loseSound.play();
 		frog_dead();
 	}
 	if ((frogXPos < car3BXPos + 23) && (frogXPos + 23 > car3BXPos) && (frogYPos < car3BYPos + 21) && (frogYPos + 18 > car3BYPos)){
+		loseSound.play();
 		frog_dead();
 	}
 	if ((frogXPos < car3CXPos + 28) && (frogXPos + 23 > car3CXPos) && (frogYPos < car3CYPos + 20) && (frogYPos + 18 > car3CYPos)){
+		loseSound.play();
 		frog_dead();
 	}
 	if ((frogXPos < car4AXPos + 48) && (frogXPos + 23 > car4AXPos) && (frogYPos < car4AYPos + 18) && (frogYPos + 18 > car4AYPos)){
+		loseSound.play();
 		frog_dead();
 	}
 	if ((frogXPos < car4BXPos + 28) && (frogXPos + 23 > car4BXPos) && (frogYPos < car4BYPos + 20) && (frogYPos + 18 > car4BYPos)){
+		loseSound.play();
 		frog_dead();
 	}
 	if ((frogXPos < car4CXPos + 48) && (frogXPos + 23 > car4CXPos) && (frogYPos < car4CYPos + 18) && (frogYPos + 18 > car4CYPos)){
+		loseSound.play();
 		frog_dead();
 	}
 	if ((frogXPos < car5AXPos + 24) && (frogXPos + 23 > car5AXPos) && (frogYPos < car5AYPos + 26) && (frogYPos + 18 > car5AYPos)){
+		loseSound.play();
 		frog_dead();
 	}
 	if ((frogXPos < car5BXPos + 24) && (frogXPos + 23 > car5BXPos) && (frogYPos < car5BYPos + 24) && (frogYPos + 18 > car5BYPos)){
+		loseSound.play();
 		frog_dead();
 	}
 }
@@ -362,36 +386,42 @@ function check_water(){
 		frogXPos += logSpeed;
 	}
 	else {
+		loseSound.play();
 		frog_dead();
 	}
 }
 
 function check_win(){
 	if ((frogXPos < 42) && (frogXPos + 23 > 15) && (frogYPos < 102) && (frogYPos + 18 > 75)){
+		winSound.play();
 		numWon += 1;
 		score_win();
 		frogXPos = frogXStart;
 		frogYPos = frogYStart;
 	}
 	else if ((frogXPos < 128) && (frogXPos + 23 > 101) && (frogYPos < 102) && (frogYPos + 18 > 75)){
+		winSound.play();
 		numWon += 1;
 		score_win();
 		frogXPos = frogXStart;
 		frogYPos = frogYStart;
 	}
 	else if ((frogXPos < 213) && (frogXPos + 23 > 186) && (frogYPos < 102) && (frogYPos + 18 > 75)){
+		winSound.play();
 		numWon += 1;
 		score_win();
 		frogXPos = frogXStart;
 		frogYPos = frogYStart;
 	}
 	else if ((frogXPos < 297) && (frogXPos + 23 > 270) && (frogYPos < 102) && (frogYPos + 18 > 75)){
+		winSound.play();
 		numWon += 1;
 		score_win();
 		frogXPos = frogXStart;
 		frogYPos = frogYStart;
 	}
 	else if ((frogXPos < 382) && (frogXPos + 23 > 355) && (frogYPos < 102) && (frogYPos + 18 > 75)){
+		winSound.play();
 		numWon += 1;
 		score_win();
 		frogXPos = frogXStart;
@@ -401,13 +431,13 @@ function check_win(){
 
 // after frog piece makes it to lily pad, updates score
 function score_win(){
-		if (numWon % 5 == 0){		// if fifth frog to make it, +1000
-			score += 1000;
-			level += 1;
-			carSpeed += 3;
-			logSpeed += 3;
-		}
-		else {						// otherwise, +50
-			score += 50;
-		}
+	if (numWon % 5 == 0){		// if fifth frog to make it, +1000
+		score += 1000;
+		level += 1;
+		carSpeed += 3;
+		logSpeed += 3;
+	}
+	else {						// otherwise, +50
+		score += 50;
+	}
 }

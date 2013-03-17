@@ -12,6 +12,10 @@ IMPLEMENTED IN THIS ASSIGNMENT:
 ADDITIONAL IMPLEMENTATIONS:
 - Upon collision with car or submersion in water, Frogger animates to dead frog image
 - Basic levels implemented such that after successfully getting five frogs home, animation speed of logs and cars increases.
+- Implemented game audio [sounds play when Frogger moves, wins, or dies]
+
+FUTURE IMPROVEMENTS:
+Although my Frogger game currently meets all necessary requirements and follows all directions, my code is not very modular. While my variable and function names are clear and my code is readable, I reproduce much of the same code multiple times because I have not yet stored objects in arrays [e.g.: an array of logs, another of vehicles, et al]. I am aware of this lack of modularity and will improve upon it in the future.
 
 COLLABORATION AND REFERENCE:
 I discussed methods for implementing animation and collision detection with Cameron Jackson and Jessie Serrino.
