@@ -181,14 +181,17 @@ function draw_board(){
 	ctx.fillStyle="#000000";
 	ctx.fillRect(2, 311, 395, 252);
 	img = new Image();
+	img2 = new Image();
 	img.onload = function(){
 		ctx.drawImage(img, 5, 6, 338, 43, 5, 5, 338, 43);		// header
 		ctx.drawImage(img, 0, 55, 395, 54, 2, 53, 395, 54);		// green shape
+		ctx.drawImage(img2, 0, 0, 28, 28, 16, 75, 28, 28);
 		ctx.drawImage(img, 0, 119, 395, 34, 2, 277, 395, 34);	// purple road
 		ctx.drawImage(img, 0, 119, 395, 34, 2, 487, 395, 34);	// purple road
 		ctx.drawImage(img, 12, 369, 23, 18, frogXPos, frogYPos, 23, 18);			// frog piece
 	};
 	img.src='assets/frogger_sprites.png';
+	img2.src='assets/lilypad.png';
 }
 
 function draw_pieces(){
