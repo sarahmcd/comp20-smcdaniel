@@ -8,7 +8,7 @@ IMPLEMENTED IN THIS ASSIGNMENT:
 - Additional vehicles and logs rendered
 - All vehicles and logs animated
 - Collision detection implemented [such that Frogger loses one life one struck by a vehicle]
-- Basic game scoring [10 points for moving forward] implemented
+- Basic game scoring [10 points for moving forward, 50 points for getting Frogger home, 1000 points for each fifth Frogger returned home] implemented
 
 COLLABORATION AND REFERENCE:
 I discussed methods for implementing animation and collision detection with Cameron Jackson and Jessie Serrino.
