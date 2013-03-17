@@ -5,7 +5,7 @@ var score;
 var highScore;
 var level;
 var numLives;
-var numSuccess;
+var numWon;
 var frogXStart = 190;
 var frogYStart = 500;
 var frogXPos;
@@ -59,7 +59,7 @@ function set_up(){
 	highScore = 0;
 	level = 1;
 	numLives = 3;
-	numSuccess = 0;
+	numWon = 0;
 	frogXPos = frogXStart;
 	frogYPos = frogYStart;
 	log1XPos = 184;
@@ -188,21 +188,22 @@ function draw_board(){
 	img = new Image();
 	img2 = new Image();
 	img.onload = function(){
-		ctx.drawImage(img, 5, 6, 338, 43, 5, 5, 338, 43);		// header
-		ctx.drawImage(img, 0, 55, 395, 54, 2, 53, 395, 54);		// green shape
-		ctx.drawImage(img2, 0, 0, 27, 27, 15, 75, 27, 27);		// lily pads
+		ctx.drawImage(img, 5, 6, 338, 43, 5, 5, 338, 43);					// header
+		ctx.drawImage(img, 0, 55, 395, 54, 2, 53, 395, 54);					// green shape
+		ctx.drawImage(img2, 0, 0, 27, 27, 15, 75, 27, 27);					// lily pads
 		ctx.drawImage(img2, 0, 0, 27, 27, 101, 75, 27, 27);
 		ctx.drawImage(img2, 0, 0, 27, 27, 186, 75, 27, 27);
 		ctx.drawImage(img2, 0, 0, 27, 27, 270, 75, 27, 27);
 		ctx.drawImage(img2, 0, 0, 27, 27, 355, 75, 27, 27);
-		ctx.drawImage(img, 0, 119, 395, 34, 2, 277, 395, 34);	// purple road
-		ctx.drawImage(img, 0, 119, 395, 34, 2, 487, 395, 34);	// purple road
-		ctx.drawImage(img, 12, 369, 23, 18, frogXPos, frogYPos, 23, 18);			// frog piece
+		ctx.drawImage(img, 0, 119, 395, 34, 2, 277, 395, 34);				// purple roads
+		ctx.drawImage(img, 0, 119, 395, 34, 2, 487, 395, 34);	
+		ctx.drawImage(img, 12, 369, 23, 18, frogXPos, frogYPos, 23, 18);	// frog piece
 	};
 	img.src='assets/frogger_sprites.png';
 	img2.src='assets/lilypad.png';
 }
 
+// draw pieces on gameboard that are moving and/or changing during game play
 function draw_pieces(){
 	ctx.font="bold 14px sans-serif";
 	ctx.fillStyle="Lime";
@@ -236,7 +237,9 @@ function draw_pieces(){
 	ctx.drawImage(img, 46, 265, 24, 24, car5BXPos, car5BYPos, 24, 24);			// car5B
 }
 
+// animate pieces that move during game play
 function move(){
+	// animate vehicles
 	if (car1AXPos >= 395) {car1AXPos = -24;}
 	else {car1AXPos += 7;}
 	if (car1BXPos >= 395) {car1BXPos = -24;}
@@ -263,7 +266,7 @@ function move(){
 	else {car5AXPos += 7;}
 	if (car5BXPos >= 395) {car5BXPos = -24;}
 	else {car5BXPos += 7;}
-	
+	// animate logs
 	if (log1XPos >= 395) {log1XPos = -116;}
 	else {log1XPos += 7;}
 	if (log2XPos >= 395) {log2XPos = -116;}
@@ -276,12 +279,13 @@ function move(){
 	else {log5XPos += 7;}
 }
 
+// check if frog piece has collided with vehicle or is in water
 function check_collide(){
-	if (frogYPos > 277){
-		check_cars();
+	if (frogYPos > 277){		// if on lower part of board ['highway']
+		check_cars();			// check if collided with cars
 	}
 	else {
-		check_water();
+		check_water();			// otherwise, check water
 	}
 }
 
@@ -372,36 +376,50 @@ function check_water(){
 	}
 	else {
 		numLives += -1;
-		frogXPos = frogXStart;
-		frogYPos = frogYStart;
+//		frogXPos = frogXStart;
+//		frogYPos = frogYStart;
 	}
 }
 
 function check_win(){
 	if ((frogXPos < 42) && (frogXPos + 23 > 15) && (frogYPos < 102) && (frogYPos + 18 > 75)){
-		score += 50;
+		numWon += 1;
+		score_win();
 		frogXPos = frogXStart;
 		frogYPos = frogYStart;
 	}
 	else if ((frogXPos < 128) && (frogXPos + 23 > 101) && (frogYPos < 102) && (frogYPos + 18 > 75)){
-		score += 50;
+		numWon += 1;
+		score_win();
 		frogXPos = frogXStart;
 		frogYPos = frogYStart;
 	}
 	else if ((frogXPos < 213) && (frogXPos + 23 > 186) && (frogYPos < 102) && (frogYPos + 18 > 75)){
-		score += 50;
+		numWon += 1;
+		score_win();
 		frogXPos = frogXStart;
 		frogYPos = frogYStart;
 	}
 	else if ((frogXPos < 297) && (frogXPos + 23 > 270) && (frogYPos < 102) && (frogYPos + 18 > 75)){
-		score += 50;
+		numWon += 1;
+		score_win();
 		frogXPos = frogXStart;
 		frogYPos = frogYStart;
 	}
 	else if ((frogXPos < 382) && (frogXPos + 23 > 355) && (frogYPos < 102) && (frogYPos + 18 > 75)){
-		score += 50;
+		numWon += 1;
+		score_win();
 		frogXPos = frogXStart;
 		frogYPos = frogYStart;
 	}
+}
 
+// after frog piece makes it to lily pad, updates score
+function score_win(){
+		if (numWon % 5 == 0){		// if fifth frog to make it, +1000
+			score += 1000;
+		}
+		else {						// otherwise, +50
+			score += 50;
+		}
 }
