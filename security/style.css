@@ -1,0 +1,12 @@
+p, h1, h2, h3, ul {
+font-family: 'Ubuntu', sans-serif;
+color: #FFFF99;
+}
+
+body {
+margin-bottom: 55px;
+margin-left: 50px;
+margin-right: 10px;
+background: #000033;
+background-attachment: scroll;
+}
