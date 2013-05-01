@@ -1,12 +1,29 @@
-p, h1, h2, h3, ul {
-font-family: 'Ubuntu', sans-serif;
-color: #FFFF99;
+h1 {
+	font-style: italic;
 }
 
-body {
-margin-bottom: 55px;
-margin-left: 50px;
-margin-right: 10px;
-background: #000033;
-background-attachment: scroll;
+p, h1, h2, h3, ul, .name, .detail, #email {
+	font-family: 'Ubuntu', sans-serif;
+	color: #FFF8DC;
+}
+
+p, body, .name, .detail {
+	margin-bottom: 55px;
+	margin-left: 50px;
+	margin-right: 50px;
+	background: #556B2F;
+	background-attachment: scroll;
+}
+
+.name, #email {
+	color: #DC143C;
+	font-style: italic
+}
+
+.name {
+	font-size: 18px;
+}
+
+.detail {
+	margin-left: 75px;
 }

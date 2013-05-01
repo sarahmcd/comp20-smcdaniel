@@ -2,23 +2,82 @@
 <head>
 	<title>Security Assessment of Scorecenter</title>
 	<link rel="stylesheet" href="style.css">
-	<link rel="shortcut icon" href="">
+	<link rel="shortcut icon" href="tetris.jpeg">
 	<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
 </head>
 <body>
 	<h1>Security Assessment of Scorecenter</h1>
-	<h2>COMP 20, Spring 2013 [Assignment 6]</h2>
+	<h2>COMP 20, Spring 2013 [Assignment 6]</h2></br>
 	<h3>Introduction</h3>
-	<p>Allow me to introduce you...</p>
+		<p>Ming Chow's COMP 20 students received the assignment of creating a Scorecenter web application. Students were required to write APIs enabling users to enter high scores for HTML5 web games, access all scores entered in the database, access the highest scores entered in the database, and search for a particular user's scores. Students ultimately made their Scorecenter applications accessible on Heroku.</br></br>
+		We were hired to perform a security analysis of a particular student's Scorecenter application. Our investigation of this application is of great urgency, as this student has been contracted to provide a high-security score-tracking database application system for the upcoming International Online Tetris Olympiad; it is the hope of our client that our findings will enable him/her to meet the terms of this contract within the next four weeks. In this report, we present security weaknesses found and suggested improvements.</p>
 	<h3>Methodology</h3>
-	<p>About my methods...</p>
+		<p>About my methods...</p></br>
 	<h3>Abstract of Findings</h3>
-	<p>Let's get abstract...</p>
+		<p>Let's get abstract...</p></br>
 	<h3>Issues Found</h3>
-	<p>Getting #problematic...</p>
-	<h3>Technical Analysis of Issues Found</h3>
-	<p>Getting #technical...</p>
+		<p><div class="name">Input Sanitization</div>
+			<div class="detail">Location: 
+				<ul>
+					<li>POST API for submitting score to Scorecenter</li>
+				</ul>
+			Severity of issue: 
+				<ul>
+					<li>HIGH [This vulnerability leaves the database wide open to attackers seeking to crash it; once the database is crashed, Scorecenter is dead in the water, and the International Online Tetris Olympiad is sunk.]</li>
+				</ul>
+			Description of issue:
+				<ul>
+					<li>Although user input is sanitized insofar as an attacker may not input scripts or undeclared fields [fields other than username, game_title, score, and created_at], there is no limit to the length of strings submitted. An attacker may thus submit absurdly long string in the input fields and crash the database.</li>
+					<li>EXAMPLE: I submitted a 'high score' containing T.S. Eliot's masterful modernist poem "The Love Song of J. Alfred Prufrock" as the username. Much as one may love seeing an eleven-odd page poem show up in a database, one must admit the dangerous inconvenience that this same poem poses in the context of database-crashing.</li>
+				</ul>
+			Images of woe and horror:</br></br>
+			Resolution of issue:
+				<ul>
+					<li></li>
+				</ul>
+			</div>
+		<div class="name">Lack of IP Address Monitoring</div>
+			<div class="detail">Location: 
+				<ul>
+					<li>POST API for submitting score to Scorecenter</li>
+				</ul>
+			Severity of issue: 
+				<ul>
+					<li>HIGH [This vulnerability leaves the database wide open to attackers seeking to crash it; once the database is crashed, Scorecenter is dead in the water, and the International Online Tetris Olympiad is sunk.]</li>
+				</ul>
+			Description of issue:
+				<ul>
+					<li>Although user input is sanitized insofar as an attacker may not input scripts or undeclared fields [fields other than username, game_title, score, and created_at], there is no limit to the length of strings submitted. An attacker may thus submit absurdly long string in the input fields and crash the database.</li>
+					<li>EXAMPLE: I submitted a 'high score' containing T.S. Eliot's masterful modernist poem "The Love Song of J. Alfred Prufrock" as the username. Much as one may love seeing an eleven-odd page poem show up in a database, one must admit the dangerous inconvenience that this same poem poses in the context of database-crashing.</li>
+				</ul>
+			Images of woe and horror:</br></br>
+			Resolution of issue:
+				<ul>
+					<li></li>
+				</ul>
+			</div>
+		<div class="name">Risk of DDoS Attack</div>
+			<div class="detail">Location: 
+				<ul>
+					<li>POST API for submitting score to Scorecenter</li>
+				</ul>
+			Severity of issue: 
+				<ul>
+					<li>HIGH [This vulnerability leaves the database wide open to attackers seeking to crash it; once the database is crashed, Scorecenter is dead in the water, and the International Online Tetris Olympiad is sunk.]</li>
+				</ul>
+			Description of issue:
+				<ul>
+					<li>Although user input is sanitized insofar as an attacker may not input scripts or undeclared fields [fields other than username, game_title, score, and created_at], there is no limit to the length of strings submitted. An attacker may thus submit absurdly long string in the input fields and crash the database.</li>
+					<li>EXAMPLE: I submitted a 'high score' containing T.S. Eliot's masterful modernist poem "The Love Song of J. Alfred Prufrock" as the username. Much as one may love seeing an eleven-odd page poem show up in a database, one must admit the dangerous inconvenience that this same poem poses in the context of database-crashing.</li>
+				</ul>
+			Images of woe and horror:</br></br>
+			Resolution of issue:
+				<ul>
+					<li></li>
+				</ul>
+			</div>
 	<h3>Conclusion</h3>
-	<p>Concluding...</p>
+		<p>Concluding...</br></br>
+		Sarah McDaniel, supervisor of this analysis and author of this report, is reachable at <a id="email" href="mailto:sarah.mcdaniel@tufts.edu">Sarah.McDaniel@tufts.edu</a> for questions, comments, further consultation, and estimates for future analyses.</p>
 </body>
 </html>
