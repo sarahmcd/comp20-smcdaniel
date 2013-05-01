@@ -8,5 +8,8 @@ I have also made report.html accessible from my personal GitHub homepage, sarahm
 ## COLLABORATION
 I collaborated with Cameron Jackson and Jessie Serrino on this assignment. Cameron and I worked together to set up our reports and brainstorm potential security risks. Jessie and I collaborated in writing bash scripts and exploring database vulnerabilities with ridiculous POST requests.
 
+## REFERENCE
+I referred to Shilpa Nadimpalli's security assessment report [accessible at http://www.cs.tufts.edu/~snadim02/comp20/a5] while completing this assignment.
+
 ## TIME SPENT
 I spent approximately six hours completing this assignment.
