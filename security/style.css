@@ -16,12 +16,12 @@ p, body, .name, .detail {
 }
 
 .name, #email {
-	color: #DC143C;
-	font-style: italic
+	color: #4B0082;
+	font-style: oblique;
 }
 
 .name {
-	font-size: 18px;
+	font-size: 25px;
 }
 
 .detail {

@@ -12,9 +12,17 @@
 		<p>Ming Chow's COMP 20 students received the assignment of creating a Scorecenter web application. Students were required to write APIs enabling users to enter high scores for HTML5 web games, access all scores entered in the database, access the highest scores entered in the database, and search for a particular user's scores. Students ultimately made their Scorecenter applications accessible on Heroku.</br></br>
 		We were hired to perform a security analysis of a particular student's Scorecenter application. Our investigation of this application is of great urgency, as this student has been contracted to provide a high-security score-tracking database application system for the upcoming International Online Tetris Olympiad; it is the hope of our client that our findings will enable him/her to meet the terms of this contract within the next four weeks. In this report, we present security weaknesses found and suggested improvements.</p>
 	<h3>Methodology</h3>
-		<p></p></br>
+		<p>We both examined Scorecenter's source code and worked with its live Heroku-accessible version to test for its vulnerabilities. We also wrote several scripts and programs to use as tools in carrying out attacks on the site -- including a C++ program to concatenate large text files into a single input string and a bash script to automate the sending of various POST requests.</br></br>
+		Source code for Scorecenter is accessible <a href="https://github.com/tuftsdev/comp20-smcdaniel/blob/master/security/gfscorecenter.js">on GitHub</a>. The online version of Scorecenter is accessible at its <a href="http://aqueous-castle-7030.herokuapp.com/">Heroku address</a>.</p>
 	<h3>Abstract of Findings</h3>
-		<p>Let's get abstract...</p></br>
+		<p>
+			<div class="detail">Security and Safety of User Input</br>
+				Restrictions on user input for POST requests are lacking; as Scorecenter is now, attackers may take advantage of the lack of input length restrictions to flood the database.</div>
+			<div class="detail">Ease of Access for Malicious User</br>
+				Currently, a user attempting to attack Scorecenter encounters no barriers to prevent him/her from continuously trying to penetrate it. An attacker with malicious intent may therefore spend all day hacking away at Scorecenter without ever running into difficulty.</div>
+			<div class="detail">Scale of Server</br>
+				Despite the fact that Scorecenter is an application designed for use by many users [say, many users participating in a gaming challenge or tournament], its server is too small and unstable to handle much web traffic.</div>
+		</p>
 	<h3>Issues Found</h3>
 		<p><div class="name">Input Sanitization</div>
 			<div class="detail">Location: 
@@ -28,6 +36,7 @@
 			Description of issue:
 				<ul>
 					<li>Although user input is sanitized insofar as an attacker may not input scripts or undeclared fields [fields other than username, game_title, score, and created_at], there is no limit to the length of strings submitted. An attacker may thus submit absurdly long string in the input fields and crash the database.</li>
+					<li>Additionally, users may modify and/or fabricate the scores they receive in HTML5 games when sending POST requests. In the context of such high-stakes tournaments as the International Online Tetris Olympiad, this poses a serious risk to the integrity of the game.</li>
 					<li>EXAMPLE: I submitted a 'high score' containing T.S. Eliot's masterful modernist poem "The Love Song of J. Alfred Prufrock" as the username. Much as one may love seeing an eleven-odd page poem show up in a database, one must admit the dangerous inconvenience that this same poem poses in the context of database-crashing.</li>
 				</ul>
 			Images of woe and horror:</br>
@@ -36,7 +45,7 @@
 			<img src="long.jpg" alt="Username: Prufrock"></br></br>
 			Resolution of issue:
 				<ul>
-					<li></li>
+					<li>Use the HTML5 attribute [for form input] maxlength; specify, for example, maxlength="10".</li>
 				</ul>
 			</div>
 		<div class="name">Lack of IP Address Monitoring</div>
@@ -58,7 +67,7 @@
 			<img src="prufrock.jpg" alt="A couple entries from our friend frogger"></br></br>
 			Resolution of issue:
 				<ul>
-					<li></li>
+					<li>Blacklist IP addresses after a certain number of POST requests in a certain time interval using a utility such as that documented <a href="http://www.west-wind.com/weblog/posts/2007/Apr/28/Blocking-IIS-IP-Addresses-with-ASPNET">here</a>.</li>
 				</ul>
 			</div>
 		<div class="name">Risk of DDoS Attack</div>
@@ -78,11 +87,12 @@
 				</ul>
 			Resolution of issue:
 				<ul>
-					<li></li>
+					<li>Invest in more substantive servers.</li>
+					<li>Develop gfscorecenter.js into separate JS files -- perhaps creating a web.js file, a server.js file, and a third file to handle and direct requests.</li>
 				</ul>
 			</div>
 	<h3>Conclusion</h3>
-		<p>Concluding...</br></br>
+		<p>As it is now, the web site and application Scorecenter lacks several basic security measures for the protection of its database and preservation of its online stability.</br></br>
 		Sarah McDaniel, supervisor of this analysis and author of this report, is reachable at <a id="email" href="mailto:sarah.mcdaniel@tufts.edu">Sarah.McDaniel@tufts.edu</a> for questions, comments, further consultation, and estimates for future analyses.</p>
 </body>
 </html>
